@@ -47,7 +47,7 @@
 //           {popup}
 //         </div>
 //       )}
-
+ 
 //       <div ref={boxRef} className="p-8 bg-[#2c2c2c] rounded-xl w-80 space-y-4">
 //         <h2 className="text-2xl font-bold text-center">Login</h2>
 
