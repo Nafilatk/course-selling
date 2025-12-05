@@ -32,7 +32,7 @@ export default function Navbar() {
   const navItems = [
     { name: 'Home', href: '/' },
     { name: 'Courses', href: '/courses' },
-    { name: 'eBooks', href: '/ebooks' },
+    { name: 'eBooks', href: '/ebook' },
     { name: 'Tests', href: '/tests' },
     { name: 'About', href: '/about' },
   ];
@@ -51,26 +51,23 @@ export default function Navbar() {
   };
 
   return (
-    <nav className={`sticky top-0 z-50 transition-all duration-300 ${isScrolled
-        ? 'bg-white/90 dark:bg-gray-900/90 backdrop-blur-lg shadow-lg'
+    <nav className={`sticky top-0 z-50 transition-all duration-300 ${
+      isScrolled 
+        ? 'bg-white/90 dark:bg-gray-900/90 backdrop-blur-lg shadow-lg' 
         : 'bg-white dark:bg-gray-900'
-      }`}>
+    }`}>
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-3 group">
             <motion.div
               whileHover={{ rotate: 360 }}
-              transition={{ duration: 1 }}
+              transition={{ duration: 0.5 }}
               className="w-10 h-10 flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow"
             >
-              <Image
-                src="/vite.svg"
-                alt="Logo"
-                width={40}
-                height={40}
-                className="rounded-lg"
-              />
+              <div className="w-10 h-10 bg-linear-to-r from-blue-500 via-purple-500 to-pink-500 rounded-lg flex items-center justify-center">
+                <span className="text-white font-bold text-xl">L</span>
+              </div>
             </motion.div>
 
             <div className="flex flex-col">
@@ -106,9 +103,10 @@ export default function Navbar() {
           {/* Right side buttons */}
           <div className="flex items-center space-x-4">
             {/* Search Bar */}
-            <motion.div
-              className={`hidden md:block overflow-hidden ${showSearch ? 'w-64' : 'w-10'
-                }`}
+            <motion.div 
+              className={`hidden md:block overflow-hidden ${
+                showSearch ? 'w-64' : 'w-10'
+              }`}
               animate={{ width: showSearch ? 256 : 40 }}
               transition={{ duration: 0.3 }}
             >
@@ -116,8 +114,9 @@ export default function Navbar() {
                 <input
                   type="text"
                   placeholder="Search courses..."
-                  className={`w-full pl-10 pr-4 py-2 bg-gray-100 dark:bg-gray-800 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all ${!showSearch && 'opacity-0 cursor-default'
-                    }`}
+                  className={`w-full pl-10 pr-4 py-2 bg-gray-100 dark:bg-gray-800 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all ${
+                    !showSearch && 'opacity-0 cursor-default'
+                  }`}
                   onFocus={() => setShowSearch(true)}
                   onBlur={() => setTimeout(() => setShowSearch(false), 200)}
                 />
@@ -126,7 +125,7 @@ export default function Navbar() {
             </motion.div>
 
             {/* Mobile Search Button */}
-            <button
+            <button 
               className="md:hidden p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-colors"
               onClick={() => setShowSearch(!showSearch)}
             >
@@ -156,39 +155,6 @@ export default function Navbar() {
                 </motion.div>
               )}
             </AnimatePresence>
-
-            {/* Cart & Wishlist */}
-            <div className="hidden md:flex items-center space-x-2">
-              <motion.button
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-                className="relative p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-colors"
-              >
-                <Heart className="w-5 h-5 text-gray-600 dark:text-gray-400" />
-                <motion.span
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  className="absolute -top-1 -right-1 bg-linear-to-r from-pink-500 to-rose-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center"
-                >
-                  3
-                </motion.span>
-              </motion.button>
-
-              <motion.button
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-                className="relative p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-colors"
-              >
-                <ShoppingCart className="w-5 h-5 text-gray-600 dark:text-gray-400" />
-                <motion.span
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  className="absolute -top-1 -right-1 bg-linear-to-r from-blue-500 to-purple-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center"
-                >
-                  2
-                </motion.span>
-              </motion.button>
-            </div>
 
             {/* Auth Buttons / User Menu */}
             {!isLoggedIn ? (
@@ -220,9 +186,10 @@ export default function Navbar() {
                 >
                   <div className="w-8 h-8 bg-linear-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center text-white">
                     <User className="w-4 h-4" />
-                  </div>
-                  <ChevronDown className={`w-4 h-4 text-gray-600 dark:text-gray-400 transition-transform ${showUserMenu ? 'rotate-180' : ''
-                    }`} />
+                  </div>bg-linear-to-r
+                  <ChevronDown className={`w-4 h-4 text-gray-600 dark:text-gray-400 transition-transform ${
+                    showUserMenu ? 'rotate-180' : ''
+                  }`} />
                 </motion.button>
 
                 {/* User Dropdown Menu */}
@@ -238,7 +205,7 @@ export default function Navbar() {
                         <p className="font-semibold text-gray-900 dark:text-white">John Doe</p>
                         <p className="text-sm text-gray-500 dark:text-gray-400">john@example.com</p>
                       </div>
-
+                      
                       <div className="py-2">
                         <Link
                           href="/profile"
@@ -302,7 +269,7 @@ export default function Navbar() {
                       {item.name}
                     </Link>
                   ))}
-
+                  
                   {/* Mobile Auth Buttons */}
                   {!isLoggedIn ? (
                     <div className="px-4 pt-4 space-y-2 border-t border-gray-200 dark:border-gray-700">
