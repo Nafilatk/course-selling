@@ -1,44 +1,86 @@
 "use client";
-import React, { useEffect, useState } from 'react';
-import { courseApi } from '../lib/api';
-import type { Course } from '@/type'
-import SearchFilter from '../components/SearchFilter';
-import Pagination from '../components/Pagination';
-import CourseCard from '../components/CourseCard';
 
+import { useEffect, useState } from "react";
+import Link from "next/link";
 
-export default function CoursePage() {
+interface Course {
+  id: number;
+  title: string;
+  description: string;
+  category: string;
+}
+
+export default function CoursesPage() {
   const [courses, setCourses] = useState<Course[]>([]);
-  const [page, setPage] = useState(1);
-  const [total, setTotal] = useState(0);
-  const [search, setSearch] = useState('');
-  const [category, setCategory] = useState('');
-  const limit = 20;
+  const [search, setSearch] = useState("");
+  const [category, setCategory] = useState("all");
 
-
+  // Fetch courses from JSON server
   useEffect(() => {
-    let mounted = true;
-    (async () => {
-      const res = await courseApi.getCourses({ page, limit, search, category });
-      if (!mounted) return;
-      setCourses(res.data);
-      setTotal(res.total);
-    })();
-    return () => { mounted = false };
-  }, [page, search, category]);
+    fetch("http://localhost:5000/courses")
+      .then(res => res.json())
+      .then(data => setCourses(data));
+  }, []);
 
-
-  const totalPages = Math.max(1, Math.ceil(total / limit));
-
+  // Filtered courses
+  const filtered = courses.filter((c) =>
+    c.title.toLowerCase().includes(search.toLowerCase()) &&
+    (category === "all" || c.category === category)
+  );
 
   return (
-    <main className="p-4 max-w-7xl mx-auto">
-      <h1 className="text-2xl font-bold mb-4">Courses</h1>
-      <SearchFilter search={search} setSearch={(s) => { setPage(1); setSearch(s); }} category={category} setCategory={(c) => { setPage(1); setCategory(c); }} />
-      <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
-        {courses.map(course => <CourseCard key={course.id} course={course} />)}
-      </section>
-      <Pagination page={page} totalPages={totalPages} onChange={(p) => setPage(p)} />
-    </main>
+    <div className="flex min-h-screen px-6 py-6 gap-6">
+
+      {/* ---------------- Sidebar ---------------- */}
+      <aside className="w-64 border rounded-xl p-4 h-fit shadow-sm">
+        <h2 className="text-xl font-semibold mb-4">Filters</h2>
+
+        {/* Search */}
+        <input
+          type="text"
+          placeholder="Search courses..."
+          className="w-full p-2 border rounded-lg mb-4"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
+
+        {/* Category */}
+        <h3 className="font-semibold mb-2">Category</h3>
+        <select
+          className="w-full border p-2 rounded-lg"
+          value={category}
+          onChange={(e) => setCategory(e.target.value)}
+        >
+          <option value="all">All</option>
+          <option value="frontend">Frontend</option>
+          <option value="backend">Backend</option>
+          <option value="python">Python</option>
+          <option value="javascript">JavaScript</option>
+        </select>
+      </aside>
+
+      {/* ---------------- Courses List ---------------- */}
+      <div className="flex-1">
+        <h1 className="text-3xl font-bold mb-6">Courses</h1>
+
+        <div className="grid md:grid-cols-3 gap-6">
+          {filtered.map((course) => (
+            <Link
+              key={course.id}
+              href={`/courses/${course.id}`}
+              className="border rounded-xl p-4 shadow-sm hover:shadow-md transition"
+            >
+              <h3 className="text-xl font-semibold">{course.title}</h3>
+              <p className="text-gray-600 mt-2 text-sm">
+                {course.description}
+              </p>
+              <p className="mt-3 text-blue-600 font-medium">
+                View Course →
+              </p>
+            </Link>
+          ))}
+        </div>
+      </div>
+    </div>
   );
 }

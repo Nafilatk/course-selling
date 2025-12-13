@@ -1,63 +1,84 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
+import { motion } from "framer-motion";
 
 export default function HomePage() {
-  useEffect(() => {
-    // GSAP or Three.js animations can be added later here
-  }, []);
-
   return (
-    <main className="min-h-screen">
-      {/* ---------- Hero Section ---------- */}
-      <section>
-        <h1>Welcome to Learnest.ai</h1>
-        <p>Your personalized course learning platform</p>
-        <button>Explore Courses</button>
+    <div className="w-full min-h-screen flex flex-col items-center bg-white text-black">
+
+      <section className="w-full max-w-6xl px-6 pt-24 pb-16 text-center">
+        <h1 className="text-4xl md:text-6xl font-bold leading-tight">
+          Learn Anything, Anytime  
+          <span className="text-blue-600"> With Learnest.ai</span>
+        </h1>
+
+        <p className="mt-4 text-gray-600 max-w-2xl mx-auto text-lg">
+          Start your learning journey with our high-quality courses, ebooks  
+          and interactive lessons — designed just for you.
+        </p>
+
+        <div className="mt-8 flex justify-center gap-4">
+          <button className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg">
+            Explore Courses
+          </button>
+          <button className="px-6 py-3 border border-gray-400 hover:bg-gray-100 rounded-lg">
+            Download ebooks
+          </button>
+        </div>
       </section>
 
-      {/* ---------- Features Section ---------- */}
-      <section>
-        <h2>Why Learn With Us?</h2>
-        <ul>
-          <li>High-quality courses</li>
-          <li>Downloadable ebooks</li>
-          <li>Track your learning history</li>
-          <li>Profile-based personalized content</li>
-        </ul>
+      <section className="w-full max-w-5xl px-6 py-16 grid md:grid-cols-3 gap-6">
+        <div className="p-6 border rounded-2xl shadow-sm hover:shadow-md transition">
+          <h3 className="text-xl font-semibold">🎓 Expert Courses</h3>
+          <p className="mt-2 text-gray-600 text-sm">
+            Learn from the best instructors with real-world project-based content.
+          </p>
+        </div>
+
+        <div className="p-6 border rounded-2xl shadow-sm hover:shadow-md transition">
+          <h3 className="text-xl font-semibold">📚 Free Ebooks</h3>
+          <p className="mt-2 text-gray-600 text-sm">
+            High-quality ebooks covering development, design, and more.
+          </p>
+        </div>
+
+        <div className="p-6 border rounded-2xl shadow-sm hover:shadow-md transition">
+          <h3 className="text-xl font-semibold">⚡ Fast Learning</h3>
+          <p className="mt-2 text-gray-600 text-sm">
+            Short, beginner-friendly lessons with practical examples.
+          </p>
+        </div>
       </section>
 
-      {/* ---------- Courses Preview ---------- */}
-      <section>
-        <h2>Popular Courses</h2>
-        <div>
-          <div>
-            <h3>Frontend Development</h3>
-            <p>React, Next.js, Tailwind</p>
+      <section className="w-full max-w-6xl px-6 py-16">
+        <h2 className="text-3xl font-bold mb-6">Popular Courses</h2>
+
+        <div className="grid md:grid-cols-3 gap-6">
+
+          <div className="border rounded-xl p-5 shadow-sm hover:shadow-md transition">
+            <h4 className="text-xl font-semibold">Complete React Course</h4>
+            <p className="text-gray-600 text-sm mt-2">
+              Master modern React with real projects.
+            </p>
           </div>
-          <div>
-            <h3>Backend Development</h3>
-            <p>Python, FastAPI, Django</p>
+
+          <div className="border rounded-xl p-5 shadow-sm hover:shadow-md transition">
+            <h4 className="text-xl font-semibold">JavaScript Mastery</h4>
+            <p className="text-gray-600 text-sm mt-2">
+              Everything from basics to advanced concepts.
+            </p>
           </div>
-          <div>
-            <h3>Full Stack Roadmap</h3>
-            <p>Step-by-step learning guide</p>
+
+          <div className="border rounded-xl p-5 shadow-sm hover:shadow-md transition">
+            <h4 className="text-xl font-semibold">Python Backend Course</h4>
+            <p className="text-gray-600 text-sm mt-2">
+              Build APIs with FastAPI or Django.
+            </p>
           </div>
         </div>
       </section>
 
-      {/* ---------- Ebook Block ---------- */}
-      <section>
-        <h2>Ebooks</h2>
-        <p>Download premium study materials for free.</p>
-        <button>View Ebooks</button>
-      </section>
-
-      {/* ---------- Call to Action ---------- */}
-      <section>
-        <h2>Ready to Start Learning?</h2>
-        <button>Get Started</button>
-      </section>
-    </main>
+    </div>
   );
 }

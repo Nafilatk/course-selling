@@ -1,0 +1,100 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Nafila Tk",
+      "email": "nafila@example.com",
+      "password": "123456",
+      "role": "student" 
+    },
+    {
+      "id": 2,
+      "name": "Admin User",
+      "email": "admin@example.com",
+      "password": "admin123",
+      "role": "admin"
+    }
+  ],
+
+  "categories": [
+    { "id": 1, "name": "Frontend" },
+    { "id": 2, "name": "Backend" },
+    { "id": 3, "name": "Fullstack" },
+    { "id": 4, "name": "JavaScript" },
+    { "id": 5, "name": "React" }
+  ],
+
+  "courses": [
+    {
+      "id": 1,
+      "title": "Complete React Course",
+      "description": "Learn React from basics to advanced.",
+      "category": "React",
+      "videos": [
+        "https://www.youtube.com/embed/dGcsHMXbSOA",
+        "https://www.youtube.com/embed/bMknfKXIFA8",
+        "https://www.youtube.com/embed/w7ejDZ8SWv8",
+        "https://www.youtube.com/embed/Ke90Tje7VS0"
+      ],
+      "ebooks": [
+        {
+          "id": 1,
+          "title": "React Basics PDF",
+          "pdfUrl": "/pdfs/react-basics.pdf"
+        },
+        {
+          "id": 2,
+          "title": "React Advanced PDF",
+          "pdfUrl": "/pdfs/react-advanced.pdf"
+        }
+      ]
+    },
+  {
+    "id": 2,
+    "title": "JavaScript Mastery",
+    "description": "Complete JavaScript course.",
+    "category": "JavaScript",
+    "videos": [
+      "https://www.youtube.com/embed/PkZNo7MFNFg",
+      "https://www.youtube.com/embed/hdI2bqOjy3c",
+      "https://www.youtube.com/embed/Oive66jrwBs",
+      "https://www.youtube.com/embed/W6NZfCO5SIk"
+    ],
+    "ebooks": [
+      {
+        "id": 1,
+        "title": "JavaScript Basics PDF",
+        "pdfUrl": "/pdfs/js-basics.pdf"
+      }
+    ]
+  }
+],
+
+"ebooks": [
+  {
+    "id": 1,
+    "courseId": 1,
+    "courseTitle": "Complete React Course",
+    "category": "frontend",
+    "videoTitle": "React Introduction",
+    "pdfUrl": "/pdfs/react-intro.pdf"
+  },
+  {
+    "id": 2,
+    "courseId": 1,
+    "courseTitle": "Complete React Course",
+    "category": "frontend",
+    "videoTitle": "JSX & Components",
+    "pdfUrl": "/pdfs/jsx-components.pdf"
+  },
+  {
+    "id": 3,
+    "courseId": 2,
+    "courseTitle": "JavaScript Mastery",
+    "category": "javascript",
+    "videoTitle": "Variables & Data Types",
+    "pdfUrl": "/pdfs/js-variables.pdf"
+  }
+]
+
+}
